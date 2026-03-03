@@ -18,5 +18,3 @@ Application web permettant aux étudiants de l'ÉTS de réserver des salles d'é
 2. `npm install`
 3. Créer un fichier `.env` avec vos credentials MySQL
 4. Lancer avec `node server.js`
-```
-
