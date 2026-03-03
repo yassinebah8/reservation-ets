@@ -20,8 +20,3 @@ Application web permettant aux étudiants de l'ÉTS de réserver des salles d'é
 4. Lancer avec `node server.js`
 ```
 
-Ensuite dans le terminal :
-```
-git add .
-git commit -m "Ajout README"
-git push
