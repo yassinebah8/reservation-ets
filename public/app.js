@@ -95,6 +95,14 @@ async function chargerSalles() {
 
 function ouvrirModal(salleId) {
     salleSelectionnee = salleId;
+    // Reset les champs
+    document.getElementById('dateReservation').value = '';
+    document.getElementById('heureDebut').value = '';
+    document.getElementById('heureFin').value = '';
+    // Cache le message d'erreur
+    const msg = document.getElementById('modalMessage');
+    msg.style.display = 'none';
+    msg.textContent = '';
     document.getElementById('modal').classList.add('active');
 }
 
