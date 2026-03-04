@@ -93,17 +93,55 @@ async function chargerSalles() {
     });
 }
 
-function ouvrirModal(salleId) {
+async function ouvrirModal(salleId) {
     salleSelectionnee = salleId;
-    // Reset les champs
     document.getElementById('dateReservation').value = '';
     document.getElementById('heureDebut').value = '';
     document.getElementById('heureFin').value = '';
-    // Cache le message d'erreur
     const msg = document.getElementById('modalMessage');
     msg.style.display = 'none';
     msg.textContent = '';
     document.getElementById('modal').classList.add('active');
+}
+
+// Met à jour les heures prises quand on change la date
+document.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('dateReservation');
+    if (dateInput) {
+        dateInput.addEventListener('change', () => {
+            if (salleSelectionnee) chargerHeuresPrises(salleSelectionnee, dateInput.value);
+        });
+    }
+});
+
+async function chargerHeuresPrises(salleId, date) {
+    if (!date) return;
+
+    const res = await fetch(`/salles/heures-prises?salle_id=${salleId}&date=${date}`);
+    const data = await res.json();
+
+    const container = document.getElementById('heuresPrises');
+    if (!container) return;
+
+    if (data.length === 0) {
+        container.innerHTML = '<p style="font-size:0.8rem; color:#aaa;">Aucune réservation ce jour</p>';
+        return;
+    }
+
+    container.innerHTML = '<p style="font-size:0.8rem; color:#888; margin-bottom:5px;">Heures déjà prises :</p>' +
+        data.map(r => `
+            <span style="
+                display:inline-block;
+                background:#f0f0f0;
+                color:#bbb;
+                padding:4px 10px;
+                border-radius:20px;
+                font-size:0.8rem;
+                margin:3px;
+                text-decoration: line-through;
+                opacity:0.5;
+            ">🚫 ${r.heure_debut.substring(0,5)} - ${r.heure_fin.substring(0,5)}</span>
+        `).join('');
 }
 
 function fermerModal() {
