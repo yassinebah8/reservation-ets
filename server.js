@@ -1,11 +1,13 @@
 const express = require('express');
 const session = require('express-session');
-require('dotenv').config();
+
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 
 const app = express();
 
 app.use(express.static('public'));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
@@ -26,5 +28,5 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Serveur démarré sur le port ${PORT}`);
+    console.log('Serveur démarré sur le port ' + PORT);
 });
