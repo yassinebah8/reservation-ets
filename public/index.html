@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation ÉTS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Réservation ÉTS</h2>
+
+    <div id="message" class="message" style="display:none"></div>
+
+    <!-- Formulaire Connexion -->
+    <div id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" />
+        <input type="password" id="loginPassword" placeholder="Mot de passe" />
+        <button onclick="login()">Se connecter</button>
+        <div class="toggle-link">
+            Pas de compte ? <span onclick="toggleForm()">S'inscrire</span>
+        </div>
+    </div>
+
+    <!-- Formulaire Inscription -->
+    <div id="registerForm" style="display:none">
+        <input type="text" id="registerNom" placeholder="Nom complet" />
+        <input type="email" id="registerEmail" placeholder="Email" />
+        <input type="password" id="registerPassword" placeholder="Mot de passe" />
+        <button onclick="register()">Créer un compte</button>
+        <div class="toggle-link">
+            Déjà un compte ? <span onclick="toggleForm()">Se connecter</span>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
